@@ -1,3 +1,13 @@
-export default class Subscrive extends Phaser.Scene {
-    
-} 
+export default class Subscribe extends Phaser.Scene {
+    constructor() {
+        super('subscribe');
+    }
+
+    create() {
+
+    }
+
+    update() {
+        
+    }
+}
