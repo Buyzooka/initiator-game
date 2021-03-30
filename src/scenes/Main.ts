@@ -1,4 +1,4 @@
-import AvoidSpamInstruction from "./AvoidSpamInstruction";
+import ProtectedAgainstSpam from "./ProtectedAgainstSpam";
 import GameOver from "./GameOver";
 
 export default class Main extends Phaser.Scene {
@@ -36,6 +36,7 @@ export default class Main extends Phaser.Scene {
         this.load.image('spam', 'assets/sprites/spam.png');
 
         this.game.scene.add('game_over', new GameOver(), false);
+        this.game.scene.add('protected_against_spam', new ProtectedAgainstSpam(), false);
     }
 
     create() {
@@ -61,6 +62,7 @@ export default class Main extends Phaser.Scene {
         this.handlePlayerUpdate();
         this.checkIfSpamHitsBoundaries();
         this.checkIfBuyzookaItemHitsGround();
+        this.checkIfProductHitsGround();
         this.scoreText.setText(`Score: ${this.data.get('score')}`);
         this.livesText.setText(`Lives: ${this.data.get('lives')}`);
     }
@@ -240,7 +242,10 @@ export default class Main extends Phaser.Scene {
                 return;
             }
 
-            this.decrementsLives();
+            if (this.playerHasShield) {
+                this.decrementsLives();
+            }
+
             this.productObjectsGroup.remove(product, true, true);
         });
     }
@@ -272,6 +277,8 @@ export default class Main extends Phaser.Scene {
         } else {
             this.playerHasShield = true;
             this.player.setTexture('shielded_ship');
+            this.scene.pause('main');
+            this.scene.launch('protected_against_spam');
         }
 
         this.buyzookaObjectsGroup.remove(item, true, true);
