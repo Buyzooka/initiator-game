@@ -1,4 +1,4 @@
-import Main from "./Main";
+import AvoidSpamInstruction from "./AvoidSpamInstruction";
 
 export default class SplashScreen extends Phaser.Scene {
     logo: Phaser.GameObjects.Image;
@@ -9,7 +9,7 @@ export default class SplashScreen extends Phaser.Scene {
 
     preload() {
         this.load.image('logo', 'assets/images/logo.png');
-        this.game.scene.add('main', new Main());
+        this.game.scene.add('avoid_spam_instruction', new AvoidSpamInstruction());
     }
 
     create() {
@@ -26,7 +26,7 @@ export default class SplashScreen extends Phaser.Scene {
             duration: 3000,
             ease: 'linear',
             onComplete: () => {
-                this.scene.start('main');
+                this.scene.start('avoid_spam_instruction');
             }
         })
         

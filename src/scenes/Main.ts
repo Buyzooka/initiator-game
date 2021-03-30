@@ -1,3 +1,6 @@
+import AvoidSpamInstruction from "./AvoidSpamInstruction";
+import GameOver from "./GameOver";
+
 export default class Main extends Phaser.Scene {
     buyzookaObjectsGroup: Phaser.Physics.Arcade.Group;
     buyzookaItemTimedEvent: Phaser.Time.TimerEvent;
@@ -31,6 +34,8 @@ export default class Main extends Phaser.Scene {
         this.load.image('shoes', 'assets/sprites/shoes.png');
         this.load.image('smartphone', 'assets/sprites/smartphone.png');
         this.load.image('spam', 'assets/sprites/spam.png');
+
+        this.game.scene.add('game_over', new GameOver(), false);
     }
 
     create() {
@@ -43,12 +48,13 @@ export default class Main extends Phaser.Scene {
         this.initBuyzookaSpawn();
         this.initProductSpawn();
         this.initText();
-        // this.scene.pause();
     }
 
     update() {
         if (this.data.get('lives') === 0) {
-            alert('GAME OVER');
+            this.scene.start('game_over', {
+                score: this.data.get('score')
+            });
             return;
         }
 
@@ -249,6 +255,7 @@ export default class Main extends Phaser.Scene {
         if (this.playerHasShield) {
             this.addScore(5);
         } else {
+            this.decrementsLives();
             this.spamObjectsGroup.remove(spam, true, true);
         }
     }

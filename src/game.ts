@@ -1,5 +1,4 @@
 import 'phaser';
-import Main from './scenes/Main';
 import SplashScreen from './scenes/SplashScreen';
 
 const config = {
