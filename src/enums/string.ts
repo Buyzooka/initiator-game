@@ -9,6 +9,17 @@ help you, in a few seconds.
 
 Good luck!`,
     AVOID_SPAM_INSTRUCTION_BUTTON = '[UNDERSTOOD!]',
+    KILL_AMAZIN_TITLE = 'Kill Amazin',
+    KILL_AMAZIN_INSTRUCTION = `
+Oh no! 
+Amazin is killing all independant e-shops 
+by eating their products. 
+Hit him with Buyzooka's shield to destroy him.
+You must protect e-commerce diversity,
+this is your mission.
+
+Go go go!`,
+    KILL_AMAZIN_BUTTON = '[Oh.. Okay!]',
     PROTECTED_AGAINST_SPAM_TITLE = `YOU'RE NOW PROTECTED.`,
     PROTECTED_AGAINST_SPAM_INSTRUCTION = `
 Nice catch! Buyzooka's shield is now protecting 
