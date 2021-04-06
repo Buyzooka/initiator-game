@@ -2,11 +2,12 @@ import 'phaser';
 import SplashScreen from './scenes/SplashScreen';
 
 const config = {
-    type: Phaser.AUTO,
     backgroundColor: '#f4f4f6',
-    width: window.innerWidth, 
+    dom: {
+        createContainer: true
+    },
     height: window.innerHeight,
-    scene: SplashScreen,
+    parent: 'gameContainer',
     physics: {
         default: 'arcade',
         arcade: {
@@ -14,7 +15,9 @@ const config = {
             gravity: { y: 150 }
         }
     },
-    parent: 'gameContainer'
+    scene: SplashScreen,
+    type: Phaser.AUTO,
+    width: window.innerWidth, 
 };
 
 new Phaser.Game(config);

@@ -14,10 +14,10 @@ export default class AvoidSpamInstruction extends Phaser.Scene {
     create() {
         const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
         const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-        const areaWidth = this.cameras.main.width - 20;
-        const areaHeight = this.cameras.main.height - 20;
+        const areaWidth = this.cameras.main.width;
+        const areaHeight = this.cameras.main.height;
 
-        this.add.zone(10, 10, areaWidth, areaWidth);
+        this.add.zone(0, 0, areaWidth, areaWidth);
         const graphics = this.add.graphics({ 
             lineStyle: { 
                 width: 2, 
@@ -27,7 +27,7 @@ export default class AvoidSpamInstruction extends Phaser.Scene {
                 color: 0x0d0d21 
             }
         });
-        graphics.fillRect(10, 10, areaWidth, areaHeight);
+        graphics.fillRect(0, 0, areaWidth, areaHeight);
         
         this.add.text(screenCenterX, 30, StringEnum.AVOID_SPAM_INSTRUCTION_TITLE, {
             fontSize: '18px'

@@ -155,7 +155,7 @@ export default class Main extends Phaser.Scene {
             defaultKey: 'amazin'
         });
 
-        this.amazinItemTimedEvent = this.time.addEvent({ delay: 45 * 1000, callback: this.startLevel2, callbackScope: this, loop: false});
+        this.amazinItemTimedEvent = this.time.addEvent({ delay: 30 * 1000, callback: this.startLevel2, callbackScope: this, loop: false});
         this.physics.add.collider(this.amazinObjectsGroup, this.player, (o1, o2) => this.amazinHitsPlayer(o1, o2), null, this);
         this.physics.add.collider(this.amazinObjectsGroup, this.productObjectsGroup, (o1, o2) => this.amazinHitsProduct(o1, o2), null, this);
     }
@@ -212,7 +212,7 @@ export default class Main extends Phaser.Scene {
         this.amazinItemTimedEvent = this.time.addEvent({ delay: 20 * 1000, callback: this.createAmazin, callbackScope: this, loop: true });
         this.buyzookaItemTimedEvent = this.time.addEvent({ delay: 400, callback: this.createBuyzookaItem, callbackScope: this, loop: true });
         this.spamTimedEvent = this.time.addEvent({ delay: 400, callback: this.createSpam, callbackScope: this, loop: true });
-        this.time.addEvent({ delay: 60 * 1000, callback: this.nextLevel, callbackScope: this });
+        this.time.addEvent({ delay: 30 * 1000, callback: this.nextLevel, callbackScope: this });
     }
 
     /**
