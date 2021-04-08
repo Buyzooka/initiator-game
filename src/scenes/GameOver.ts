@@ -1,8 +1,12 @@
+import ApiService from "../services/api.service";
+
 export default class GameOver extends Phaser.Scene {
+    apiService: ApiService;
     score: number;
 
     constructor() {
         super('game_over');
+        this.apiService = new ApiService();
     } 
 
     init(data: any) {
@@ -34,10 +38,13 @@ export default class GameOver extends Phaser.Scene {
         this.add.text(screenCenterX, screenCenterY - 100, 'GAME OVER', {
             fontSize: '30px'
         }).setOrigin(0.5);
-        this.add.text(screenCenterX, screenCenterY - 50, 'YOUR SCORE IS', {
+        this.add.text(screenCenterX, screenCenterY - 60, `${this.registry.get('playerName')},`, {
             fontSize: '18px'
         }).setOrigin(0.5);
-        this.add.text(screenCenterX, screenCenterY - 20, this.score.toString(), {
+        this.add.text(screenCenterX, screenCenterY - 40, 'YOUR SCORE IS', {
+            fontSize: '18px'
+        }).setOrigin(0.5);
+        this.add.text(screenCenterX, screenCenterY - 10, this.score.toString(), {
             fontSize: '18px'
         }).setOrigin(0.5);
 
@@ -54,7 +61,7 @@ export default class GameOver extends Phaser.Scene {
             .createFromCache('register_form');
 
         element.addListener('click');
-        element.on('click', (event) => {
+        element.on('click', async (event) => {
             if (event.target.name !== 'save_email_btn') {
                 return;
             }
@@ -64,7 +71,19 @@ export default class GameOver extends Phaser.Scene {
                 return;
             }
 
-            element.removeListener('click');
+            const data = {
+                email: (playerEmail as HTMLFormElement).value,
+                points: +this.score,
+                token: this.registry.get('player')
+            };
+
+            try {
+                await this.apiService.sendScore(data);
+                // this.scene.start('ranking');
+            } catch (e) {
+                alert('Error.');
+                (playerEmail as HTMLFormElement).value = '';
+            }
         });
     }
 }

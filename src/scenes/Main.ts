@@ -210,7 +210,7 @@ export default class Main extends Phaser.Scene {
 
         this.time.addEvent({ delay: 0, callback: this.createAmazin, callbackScope: this });
         this.amazinItemTimedEvent = this.time.addEvent({ delay: 20 * 1000, callback: this.createAmazin, callbackScope: this, loop: true });
-        this.buyzookaItemTimedEvent = this.time.addEvent({ delay: 400, callback: this.createBuyzookaItem, callbackScope: this, loop: true });
+        this.productTimedEvent = this.time.addEvent({ delay: 800, callback: this.createProduct, callbackScope: this, loop: true });
         this.spamTimedEvent = this.time.addEvent({ delay: 400, callback: this.createSpam, callbackScope: this, loop: true });
         this.time.addEvent({ delay: 30 * 1000, callback: this.nextLevel, callbackScope: this });
     }
@@ -222,12 +222,12 @@ export default class Main extends Phaser.Scene {
         this.data.inc('level');
         this.difficulty++;
         this.spamTimedEvent.remove();
-        this.buyzookaItemTimedEvent.remove();
+        this.productTimedEvent.remove();
         this.amazinItemTimedEvent.remove();
 
         this.time.addEvent({ delay: 0, callback: this.createAmazin, callbackScope: this });
         this.amazinItemTimedEvent = this.time.addEvent({ delay: (20 * 1000) / this.difficulty, callback: this.createAmazin, callbackScope: this, loop: true });
-        this.buyzookaItemTimedEvent = this.time.addEvent({ delay: 400 / this.difficulty, callback: this.createBuyzookaItem, callbackScope: this, loop: true });
+        this.productTimedEvent = this.time.addEvent({ delay: 800 / this.difficulty, callback: this.createProduct, callbackScope: this, loop: true });
         this.spamTimedEvent = this.time.addEvent({ delay: 400 / this.difficulty, callback: this.createSpam, callbackScope: this, loop: true });
     }
 
