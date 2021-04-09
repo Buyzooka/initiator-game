@@ -5,8 +5,6 @@ export default class ApiService {
 
     constructor() {
         this.apiUrl = `https://0.0.0.0:3333/game/`;
-        // this.apiUrl = `https://apiv1.buyzooka.io/game/`;
-        // this.apiUrl = `https://apiv1-staging.buyzooka.io/game/`;
     }
 
     /**
