@@ -3,6 +3,7 @@ import GameOver from "./GameOver";
 import KillAmazin from "./KillAmazin";
 
 export default class Main extends Phaser.Scene {
+    activePointer: Phaser.Input.Pointer;
     amazinObjectsGroup: Phaser.Physics.Arcade.Group;
     amazinItemTimedEvent: Phaser.Time.TimerEvent;
     buyzookaObjectsGroup: Phaser.Physics.Arcade.Group;
@@ -51,6 +52,7 @@ export default class Main extends Phaser.Scene {
     create() {
         this.cameras.main.setBackgroundColor('#0d0d21');
         this.cursors = this.input.keyboard.createCursorKeys();
+        
 
         this.initData();
         this.initPlayer();
@@ -266,11 +268,12 @@ export default class Main extends Phaser.Scene {
      * Handle player mouvements
      */
     handlePlayerUpdate(): void {
+        this.activePointer = this.input.activePointer;
         this.player.setVelocityX(0);
 
-        if (this.cursors.left.isDown) {
+        if (this.cursors.left.isDown || this.activePointer.x < (this.width / 2)) {
             this.player.setVelocityX(-500);
-        } else if (this.cursors.right.isDown) {
+        } else if (this.cursors.right.isDown || this.activePointer.x > (this.width / 2)) {
             this.player.setVelocityX(500);
         }
     }

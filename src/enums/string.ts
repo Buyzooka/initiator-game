@@ -28,6 +28,13 @@ Now, don't let those items fall down!
 
 Have fun!`,
     PROTECTED_AGAINST_SPAM_BUTTON = '[ROGER THAT!]',
+
+    RANKING_TITLE = 'RANKING',
+    RANKING_INSTRUCTION = `
+Thanks for saving your score! 
+Spread the word to your friends, and see your 
+score doubled for each sponsored player!
+    `,
 } 
 
 export default StringEnum;

@@ -1,0 +1,86 @@
+<style>
+    .referral {
+        background: #eceeee;
+        border: 1px solid #42464b;
+        border-radius: 6px;
+        height: 157px;
+        margin: 20px auto 0;
+        width: 298px;
+    }
+
+    .referral h1 {
+        background-image: linear-gradient(top, #f1f3f3, #d4dae0);
+        border-bottom: 1px solid #a6abaf;
+        border-radius: 6px 6px 0 0;
+        box-sizing: border-box;
+        color: #727678;
+        display: block;
+        height: 43px;
+        font: 600 14px/1 'Open Sans', sans-serif;
+        padding-top: 14px;
+        margin: 0;
+        text-align: center;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.2), 0 1px 0 #fff;
+    }
+    
+    .shadow {
+        background: #000;
+        border-radius: 12px 12px 4px 4px;
+        box-shadow: 0 0 20px 10px #000;
+        height: 12px;
+        margin: 30px auto;
+        opacity: 0.2;
+        width: 270px;
+    }
+
+    input[type="button"] {
+        width:240px;
+        height:35px;
+        display:block;
+        font-family:Arial, "Helvetica", sans-serif;
+        font-size:16px;
+        font-weight:bold;
+        color:#fff;
+        text-decoration:none;
+        text-transform:uppercase;
+        text-align:center;
+        text-shadow:1px 1px 0px #37a69b;
+        padding-top:6px;
+        margin: 5px 0 0 29px;
+        position:relative;
+        cursor:pointer;
+        border: none;  
+        background-color: #37a69b;
+        background-image: linear-gradient(top,#3db0a6,#3111);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius:5px;
+        box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #497a78, 0px 10px 5px #999;
+    }
+
+    p {
+        font-family:Arial, "Helvetica", sans-serif;
+        font-size:16px;
+        font-weight:bold;
+        text-align: center;
+    } 
+
+    #referral-link {
+        width: 90%;
+        margin-left: 5%;
+        font-family: 'Courier New', sans-serif;
+        text-align: center;
+        padding: 4px;
+        border: 1px solid #0d0d21;
+        border-radius: 4px;
+        color: #0d0d21;
+    }
+</style>
+
+<div class="referral">
+    <p>Share this link: double your points!</p>
+    <input type="text" name="referral-link" id="referral-link" value="" readonly>
+    <input type="button" value="Share!" name="share_btn">
+</div>
+<div class="shadow"></div>

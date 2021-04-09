@@ -1,4 +1,5 @@
 import ApiService from "../services/api.service";
+import Ranking from "./Ranking";
 
 export default class GameOver extends Phaser.Scene {
     apiService: ApiService;
@@ -14,6 +15,7 @@ export default class GameOver extends Phaser.Scene {
     }
 
     preload() {
+        this.game.scene.add('ranking', new Ranking());
         this.load.html('register_form', 'assets/html/subscribe.html');
     }
 
@@ -78,10 +80,12 @@ export default class GameOver extends Phaser.Scene {
             };
 
             try {
-                await this.apiService.sendScore(data);
-                // this.scene.start('ranking');
+                const response = await this.apiService.sendScore(data);
+                const lead = (await response.json());
+                
+                this.scene.start('ranking', { lead: lead });
             } catch (e) {
-                alert('Error.');
+                alert('Email is already in use. Choose a different one.');
                 (playerEmail as HTMLFormElement).value = '';
             }
         });
