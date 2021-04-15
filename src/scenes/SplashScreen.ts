@@ -14,8 +14,10 @@ export default class SplashScreen extends Phaser.Scene {
 
     create() {
         const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+        console.log("🚀 ~ file: SplashScreen.ts ~ line 17 ~ SplashScreen ~ create ~ screenCenterX", screenCenterX)
         const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-        this.logo = this.add.image(screenCenterX, screenCenterY, 'logo').setOrigin(0.5);
+        console.log("🚀 ~ file: SplashScreen.ts ~ line 19 ~ SplashScreen ~ create ~ screenCenterY", screenCenterY)
+        this.logo = this.add.image(screenCenterX, screenCenterY, 'logo');
 
         this.time.addEvent({ delay: 2000, callback: this.startMainScene, callbackScope: this });
     }

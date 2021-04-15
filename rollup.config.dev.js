@@ -17,7 +17,7 @@ export default {
     //  The 'intro' property can be removed if using Phaser 3.21 or above. Keep it for earlier versions.
     output: {
         file: './dist/game.js',
-        name: 'MyGame',
+        name: 'Buyzooka',
         format: 'iife',
         sourcemap: true,
         intro: 'var global = window;'
@@ -32,7 +32,10 @@ export default {
             'typeof EXPERIMENTAL': JSON.stringify(true),
             'typeof PLUGIN_CAMERA3D': JSON.stringify(false),
             'typeof PLUGIN_FBINSTANT': JSON.stringify(false),
-            'typeof FEATURE_SOUND': JSON.stringify(true)
+            'typeof FEATURE_SOUND': JSON.stringify(true),
+            process: JSON.stringify({
+                env: process.env
+            })
         }),
 
         //  Parse our .ts source files

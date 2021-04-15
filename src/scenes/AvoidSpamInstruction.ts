@@ -11,14 +11,14 @@ export default class AvoidSpamInstruction extends Phaser.Scene {
     } 
 
     preload() {
-        this.load.image('spam', 'assets/sprites/spam.png');
+        this.load.svg('spam', 'assets/sprites/spam.svg');
         this.load.html('nickname_form', 'assets/html/nickname.html');
         this.game.scene.add('main', new Main());
     }
 
     create() {
-        const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
-        const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+        const screenCenterX = ((this.cameras.main.worldView.x + this.cameras.main.width)) / 2;
+        const screenCenterY = ((this.cameras.main.worldView.y + this.cameras.main.height)) / 2;
         const areaWidth = this.cameras.main.width;
         const areaHeight = this.cameras.main.height;
 
@@ -34,18 +34,23 @@ export default class AvoidSpamInstruction extends Phaser.Scene {
         });
         graphics.fillRect(0, 0, areaWidth, areaHeight);
         
-        this.add.text(screenCenterX, 30, StringEnum.AVOID_SPAM_INSTRUCTION_TITLE, {
-            fontSize: '18px'
-        }).setOrigin(0.5);
+        this.add.text(30, 30, StringEnum.AVOID_SPAM_INSTRUCTION_TITLE, {
+            fontSize: (20 * window.devicePixelRatio) + 'px'
+        })
 
-        this.add.text(30, 100, StringEnum.AVOID_SPAM_INSTRUCTION);
-        this.add.image(screenCenterX, screenCenterY, 'spam');
-        this.addNicknameForm(screenCenterX, screenCenterY);
+        this.add.text(30, 100, StringEnum.AVOID_SPAM_INSTRUCTION, {
+            fontSize: (16 * window.devicePixelRatio) + 'px'
+        });
+        this.add.image(0, 120, 'spam')
+            .setScale(window.devicePixelRatio, window.devicePixelRatio);
+            
+        this.addNicknameForm(150, 150);
     }
 
-    private addNicknameForm(screenCenterX: number, screenCenterY: number): void {
-        const element = this.add.dom(screenCenterX, screenCenterY + 150)
-            .createFromCache('nickname_form');
+    private addNicknameForm(x: number, y: number): void {
+        const element = this.add.dom(x, y)
+            .createFromCache('nickname_form')
+            .setScale(window.devicePixelRatio, window.devicePixelRatio);
 
         element.addListener('click');
         element.on('click', async (event) => {

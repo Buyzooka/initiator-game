@@ -6,7 +6,7 @@ const config = {
     dom: {
         createContainer: true
     },
-    height: window.innerHeight,
+    height: window.innerHeight * window.devicePixelRatio,
     parent: 'gameContainer',
     physics: {
         default: 'arcade',
@@ -17,7 +17,7 @@ const config = {
     },
     scene: SplashScreen,
     type: Phaser.AUTO,
-    width: window.innerWidth, 
+    width: window.innerWidth * window.devicePixelRatio, 
 };
 
 new Phaser.Game(config);
