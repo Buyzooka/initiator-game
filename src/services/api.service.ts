@@ -1,10 +1,13 @@
 "use strict";
 
+import { env } from "../environment/env";
+
+
 export default class ApiService {
     apiUrl: string;
 
     constructor() {
-        this.apiUrl = `https://0.0.0.0:3333/game/`;
+        this.apiUrl = `${env.api.protocol}://${env.api.hostname}:${env.api.port}/game/`;
     }
 
     /**
@@ -37,7 +40,7 @@ export default class ApiService {
                 "Content-Type": "application/json",
             }
         });
-    }
+    } 
 
     /**
      * Get player's ranking

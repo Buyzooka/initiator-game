@@ -1,0 +1,8 @@
+{
+    "environment": "",
+    "api": {
+      "protocol": "",
+      "hostname": "",
+      "port": 3333
+    }
+  }
