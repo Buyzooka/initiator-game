@@ -15,6 +15,7 @@ export default class Main extends Phaser.Scene {
     difficulty: number;
     player: Phaser.Physics.Arcade.Image;
     playerHasShield: boolean;
+    productKeys: string[] = ['bike', 'camera', 'computer', 'shoes', 'smartphone'];
     productObjectsGroup: Phaser.Physics.Arcade.Group;
     productTimedEvent: Phaser.Time.TimerEvent;
     scaleRatio: number;
@@ -34,15 +35,14 @@ export default class Main extends Phaser.Scene {
     preload() {
         this.load.image('amazin', 'assets/sprites/amazin.png');
         this.load.image('amazin_ko', 'assets/sprites/amazin_ko.png');
-        this.load.image('bike', 'assets/sprites/bike.png');
         this.load.image('buyzooka', 'assets/sprites/buyzooka.png');
-        this.load.image('camera', 'assets/sprites/camera.png');
-        this.load.image('computer', 'assets/sprites/computer.png');
         this.load.image('ship', 'assets/sprites/ship.png');
         this.load.image('shielded_ship', 'assets/sprites/shielded-ship.png');
-        this.load.image('shoes', 'assets/sprites/shoes.png');
-        this.load.image('smartphone', 'assets/sprites/smartphone.png');
         this.load.image('spam', 'assets/sprites/spam.png');
+
+        this.productKeys.forEach(k => {
+            this.load.image(k, `assets/sprites/${k}.png`);
+        })
 
         this.game.scene.add('game_over', new GameOver(), false);
         this.game.scene.add('kill_amazin', new KillAmazin(), false);
@@ -90,8 +90,8 @@ export default class Main extends Phaser.Scene {
      */
     initPlayer(): void {
         this.playerHasShield = false;
-        this.player = this.physics.add.image(this.width / 2, this.height - 64, 'ship');
-        this.player.setCircle(38);
+        this.player = this.physics.add.image(this.width / 2, this.height - 200, 'ship');
+        this.player.setCircle(this.player.width / 2);
 
         this.player.setImmovable();
         this.player.setCollideWorldBounds(true);
@@ -113,10 +113,9 @@ export default class Main extends Phaser.Scene {
     initSpamSpawn(): void {
         this.spamObjectsGroup = this.physics.add.group({
             defaultKey: 'spam',
-            collideWorldBounds: true
+            collideWorldBounds: false
         });
 
-        this.spamObjectsGroup.scaleXY(this.scaleRatio, this.scaleRatio);
         this.spamTimedEvent = this.time.addEvent({ delay: 1000, callback: this.createSpam, callbackScope: this, loop: true });
         this.physics.add.collider(this.spamObjectsGroup, this.player, (o1, o2) => this.spamHitsPlayer(o1, o2), null, this);
     }
@@ -165,9 +164,15 @@ export default class Main extends Phaser.Scene {
      * Init all texts on screen that displays scene data
      */
     initText(): void {
-        this.scoreText = this.add.text(20, this.height - 60, `Score: ${this.data.get('score')}`);
-        this.livesText = this.add.text(this.width - 100, this.height - 40, `Lives: ${this.data.get('lives')}`);
-        this.levelText = this.add.text(20, this.height - 40, `Level: ${this.data.get('level')}`);
+        this.scoreText = this.add.text(20, this.height - 120, `Score: ${this.data.get('score')}`, {
+            fontSize: (15 * this.scaleRatio) + 'px'
+        });
+        this.livesText = this.add.text(this.width - 250, this.height - 80, `Lives: ${this.data.get('lives')}`, {
+            fontSize: (15 * this.scaleRatio) + 'px'
+        });
+        this.levelText = this.add.text(20, this.height - 80, `Level: ${this.data.get('level')}`, {
+            fontSize: (15 * this.scaleRatio) + 'px'
+        });
     }
 
     /**
@@ -176,6 +181,7 @@ export default class Main extends Phaser.Scene {
     createSpam(): void {
         const spam = this.spamObjectsGroup.create(this.getRandomX(), 0);
         spam.setCircle(25);
+        spam.setScale(this.scaleRatio, this.scaleRatio);
         spam.body.bounce.set(1);
     }
 
@@ -188,14 +194,16 @@ export default class Main extends Phaser.Scene {
             return;
         }
 
-        this.buyzookaObjectsGroup.create(this.getRandomX(), 0).setCircle(24);
+        const item = this.buyzookaObjectsGroup.create(this.getRandomX(), 0);
+        item.setCircle(item.width / 2);
     }
 
     /**
      * Create product in scene
      */
     createProduct(): void {
-        this.productObjectsGroup.create(this.getRandomX(), 0, this.getRandomProductKey()).setCircle(32);
+        const product = this.productObjectsGroup.create(this.getRandomX(), 0, this.getRandomProductKey());
+        product.setCircle(product.width / 2);
     }
 
     /**
@@ -237,7 +245,7 @@ export default class Main extends Phaser.Scene {
      */
     createAmazin(): void {
         const amazin = this.amazinObjectsGroup.create(this.getRandomX(), 0, 'amazin');
-        amazin.setCircle(45);
+        amazin.setCircle(amazin.width / 2);
         amazin.body.bounce.set(1);
         amazin.body.collideWorldBounds = true;
         amazin.setData('lives', 3);
@@ -257,10 +265,8 @@ export default class Main extends Phaser.Scene {
      * 
      * @returns string
      */
-    private getRandomProductKey(): string {
-        const keys = ['bike', 'camera', 'computer', 'shoes', 'smartphone'];
-        
-        return keys[Math.floor(Math.random() * keys.length)];
+    private getRandomProductKey(): string {        
+        return this.productKeys[Math.floor(Math.random() * this.productKeys.length)];
     } 
 
     /**
@@ -270,10 +276,14 @@ export default class Main extends Phaser.Scene {
         this.activePointer = this.input.activePointer;
         this.player.setVelocityX(0);
 
-        if (this.cursors.left.isDown || this.activePointer.x < (this.width / 2)) {
+        if (this.cursors.left.isDown || (this.activePointer.isDown && (this.activePointer.x < (this.width / 2)))) {
             this.player.setVelocityX(-500);
-        } else if (this.cursors.right.isDown || this.activePointer.x > (this.width / 2)) {
+            this.player.setRotation(-0.2);
+        } else if (this.cursors.right.isDown || (this.activePointer.isDown && (this.activePointer.x > (this.width / 2)))) {
             this.player.setVelocityX(500);
+            this.player.setRotation(0.2);
+        } else {
+            this.player.setRotation(0);
         }
     }
 

@@ -4,6 +4,7 @@ import Main from "./Main";
 
 export default class AvoidSpamInstruction extends Phaser.Scene {
     apiService: ApiService;
+    spam: Phaser.GameObjects.Image;
 
     constructor() {
         super('avoid_spam_instruction');
@@ -34,17 +35,22 @@ export default class AvoidSpamInstruction extends Phaser.Scene {
         });
         graphics.fillRect(0, 0, areaWidth, areaHeight);
         
-        this.add.text(30, 30, StringEnum.AVOID_SPAM_INSTRUCTION_TITLE, {
-            fontSize: (20 * window.devicePixelRatio) + 'px'
-        })
-
-        this.add.text(30, 100, StringEnum.AVOID_SPAM_INSTRUCTION, {
-            fontSize: (16 * window.devicePixelRatio) + 'px'
+        this.add.text(30, 60, StringEnum.AVOID_SPAM_INSTRUCTION_TITLE, {
+            fontSize: (24 * window.devicePixelRatio) + 'px'
         });
-        this.add.image(0, 120, 'spam')
+
+        this.add.text(30, 130, StringEnum.AVOID_SPAM_INSTRUCTION, {
+            fontSize: (15 * window.devicePixelRatio) + 'px'
+        });
+
+        this.spam = this.add.image(screenCenterX, screenCenterY - 150, 'spam')
             .setScale(window.devicePixelRatio, window.devicePixelRatio);
             
-        this.addNicknameForm(150, 150);
+        this.addNicknameForm(screenCenterX, screenCenterY + 350);
+    }
+
+    update() {
+        this.spam.rotation += 0.01;
     }
 
     private addNicknameForm(x: number, y: number): void {

@@ -1,5 +1,6 @@
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
+import json from '@rollup/plugin-json';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import typescript from 'rollup-plugin-typescript2';
@@ -24,6 +25,8 @@ export default {
     },
 
     plugins: [
+        
+        json(),
 
         //  Toggle the booleans here to enable / disable Phaser 3 features:
         replace({

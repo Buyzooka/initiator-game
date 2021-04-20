@@ -20,8 +20,8 @@ export default class GameOver extends Phaser.Scene {
     }
 
     create() {
-        const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
-        const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+        const screenCenterX = (this.cameras.main.worldView.x + this.cameras.main.width) / 2;
+        const screenCenterY = (this.cameras.main.worldView.y + this.cameras.main.height) / 2;
         const areaWidth = this.cameras.main.width;
         const areaHeight = this.cameras.main.height;
 
@@ -37,17 +37,20 @@ export default class GameOver extends Phaser.Scene {
         });
         graphics.fillRect(0, 0, areaWidth, areaHeight);
 
-        this.add.text(screenCenterX, screenCenterY - 100, 'GAME OVER', {
-            fontSize: '30px'
+        this.add.text(screenCenterX, 60, 'GAME OVER', {
+            fontSize: (24 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5);
-        this.add.text(screenCenterX, screenCenterY - 60, `${this.registry.get('playerName')},`, {
-            fontSize: '18px'
+
+        this.add.text(screenCenterX, 130, `${this.registry.get('playerName')},`, {
+            fontSize: (18 * window.devicePixelRatio) + 'px'
+        }).setOrigin(0.5)
+
+        this.add.text(screenCenterX, 200, 'YOUR SCORE IS', {
+            fontSize: (18 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5);
-        this.add.text(screenCenterX, screenCenterY - 40, 'YOUR SCORE IS', {
-            fontSize: '18px'
-        }).setOrigin(0.5);
-        this.add.text(screenCenterX, screenCenterY - 10, this.score.toString(), {
-            fontSize: '18px'
+
+        this.add.text(screenCenterX, 250, this.score.toString(), {
+            fontSize: (18 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5);
 
         this.addSubscribeForm(screenCenterX, screenCenterY);
@@ -60,7 +63,8 @@ export default class GameOver extends Phaser.Scene {
      */
     private addSubscribeForm(screenCenterX: number, screenCenterY: number): void {
         const element = this.add.dom(screenCenterX, screenCenterY + 120)
-            .createFromCache('register_form');
+            .createFromCache('register_form')
+            .setScale(window.devicePixelRatio, window.devicePixelRatio);
 
         element.addListener('click');
         element.on('click', async (event) => {
