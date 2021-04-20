@@ -1,15 +1,18 @@
 import StringEnum from "../enums/string";
+import { env } from "../environment/env";
 import ApiService from "../services/api.service";
 
 export default class Ranking extends Phaser.Scene {
     apiService: ApiService;
+    lead: any;
     playerRanking: number;
     playersCount: number;
-    lead: any;
+    shareUrl: string;
 
     constructor() {
         super('ranking');
         this.apiService = new ApiService();
+        this.shareUrl = `${env.api.protocol}://${env.api.hostname}/`;
     } 
 
     init(data: any) {
@@ -59,7 +62,7 @@ export default class Ranking extends Phaser.Scene {
     }
 
     private addReferralBlock(screenCenterX: number, screenCenterY: number): void {
-        const referral_link = `https://play.buyzooka.io/?ref=${this.lead.referral_code}`;
+        const referral_link = `${this.shareUrl}?ref=${this.lead.referral_code}`;
         const element = this.add.dom(screenCenterX, screenCenterY + 120)
             .createFromCache('referral-block')
             .setScale(window.devicePixelRatio, window.devicePixelRatio);
