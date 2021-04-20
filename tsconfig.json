@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
         "target": "es5",
-        "moduleResolution": "node"
     },
     "include": [
         "./src/**/*"

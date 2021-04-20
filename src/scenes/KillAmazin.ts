@@ -27,15 +27,18 @@ export default class KillAmazin extends Phaser.Scene {
         });
         graphics.fillRect(0, 0, areaWidth, areaHeight);
         
-        this.add.text(screenCenterX, 30, StringEnum.KILL_AMAZIN_TITLE, {
-            fontSize: '18px'
+        this.add.text(screenCenterX, 60, StringEnum.KILL_AMAZIN_TITLE, {
+            fontSize: (24 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5);
 
-        this.add.text(30, 100, StringEnum.KILL_AMAZIN_INSTRUCTION);
-        this.add.image(screenCenterX, screenCenterY, 'amazin');
+        this.add.text(30, 100, StringEnum.KILL_AMAZIN_INSTRUCTION, {
+            fontSize: (15 * window.devicePixelRatio) + 'px'
+        });
 
-        const button = this.add.text(screenCenterX, screenCenterY + 100, StringEnum.KILL_AMAZIN_BUTTON, {
-            fontSize: '16px',
+        this.add.image(screenCenterX, screenCenterY, 'amazin').setScale(window.devicePixelRatio, window.devicePixelRatio);
+
+        const button = this.add.text(screenCenterX, screenCenterY + 250, StringEnum.KILL_AMAZIN_BUTTON, {
+            fontSize: (15 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5).setInteractive();
         
         button.on('pointerup', () => {

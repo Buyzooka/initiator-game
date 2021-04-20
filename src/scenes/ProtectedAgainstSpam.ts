@@ -27,15 +27,17 @@ export default class ProtectedAgainstSpam extends Phaser.Scene {
         });
         graphics.fillRect(0, 0, areaWidth, areaHeight);
         
-        this.add.text(screenCenterX, 30, StringEnum.PROTECTED_AGAINST_SPAM_TITLE, {
-            fontSize: '18px'
-        }).setOrigin(0.5);
+        this.add.text(30, 30, StringEnum.PROTECTED_AGAINST_SPAM_TITLE, {
+            fontSize: (24 * window.devicePixelRatio) + 'px'
+        });
 
-        this.add.text(30, 100, StringEnum.PROTECTED_AGAINST_SPAM_INSTRUCTION);
+        this.add.text(30, 100, StringEnum.PROTECTED_AGAINST_SPAM_INSTRUCTION, {
+            fontSize: (15 * window.devicePixelRatio) + 'px'
+        });
         this.add.image(screenCenterX, screenCenterY, 'shielded_ship');
 
-        const button = this.add.text(screenCenterX, screenCenterY + 100, StringEnum.PROTECTED_AGAINST_SPAM_BUTTON, {
-            fontSize: '16px',
+        const button = this.add.text(screenCenterX, screenCenterY + 180, StringEnum.PROTECTED_AGAINST_SPAM_BUTTON, {
+            fontSize: (15 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5).setInteractive();
         
         button.on('pointerup', () => {

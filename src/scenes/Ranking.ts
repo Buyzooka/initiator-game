@@ -38,18 +38,22 @@ export default class Ranking extends Phaser.Scene {
         });
         graphics.fillRect(0, 0, areaWidth, areaHeight);
 
-        this.add.text(screenCenterX, 30, StringEnum.RANKING_TITLE, {
-            fontSize: '18px'
+        this.add.text(screenCenterX, 60, StringEnum.RANKING_TITLE, {
+            fontSize: (24 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5);
 
         const response = await this.apiService.getRanking(this.lead, this.registry.get('player'));
         const { ranking } = await response.json();
 
-        this.add.text(30, 100, `You're #${ranking.playerRanking} over ${ranking.totalPlayersCount} players`, {
-            fontSize: '18px'
-        });
+        if (ranking) {
+            this.add.text(screenCenterX, 200, `You're #${ranking.playerRanking} over ${ranking.totalPlayersCount} players`, {
+                fontSize: (18 * window.devicePixelRatio) + 'px'
+            }).setOrigin(0.5);
+        }
 
-        this.add.text(30, 130, StringEnum.RANKING_INSTRUCTION);
+        this.add.text(screenCenterX, 300, StringEnum.RANKING_INSTRUCTION, {
+            fontSize: (15 * window.devicePixelRatio) + 'px'
+        }).setOrigin(0.5);
 
         this.addReferralBlock(screenCenterX, screenCenterY);
     }
@@ -57,7 +61,8 @@ export default class Ranking extends Phaser.Scene {
     private addReferralBlock(screenCenterX: number, screenCenterY: number): void {
         const referral_link = `https://play.buyzooka.io/?ref=${this.lead.referral_code}`;
         const element = this.add.dom(screenCenterX, screenCenterY + 120)
-            .createFromCache('referral-block');
+            .createFromCache('referral-block')
+            .setScale(window.devicePixelRatio, window.devicePixelRatio);
 
         const link = element.getChildByProperty('id', 'referral-link') as HTMLInputElement;
         link.value = referral_link;
