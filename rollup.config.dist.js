@@ -26,8 +26,11 @@ export default {
 
     plugins: [
 
+        json(),
+
         //  Toggle the booleans here to enable / disable Phaser 3 features:
         replace({
+            preventAssignment: true,
             'typeof CANVAS_RENDERER': JSON.stringify(true),
             'typeof WEBGL_RENDERER': JSON.stringify(true),
             'typeof EXPERIMENTAL': JSON.stringify(true),
