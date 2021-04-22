@@ -35,16 +35,4 @@ You will find lots of comments inside the rollup config files to help you do thi
 
 Note that due to the build process involved, it can take around 20 seconds to build the initial bundle. Times will vary based on CPU and local drive speeds. The development config does not minify the code in order to save build time, but it does generate source maps. If you do not require these, disable them in the config to speed it up further.
 
-## Credits
-
-### Assets 
-
-Here you can find all the link back to all the assets we are using.
-Bike : https://www.iconfinder.com/icons/107227/bike_icon
-Smartphone : https://www.iconfinder.com/icons/107211/iphone_icon
-Shoes : https://www.iconfinder.com/icons/107202/shoes_nike_icon
-Laptop : https://www.iconfinder.com/icons/107221/computer_icon
-Camera : https://www.iconfinder.com/icons/107226/camera_icon 
-Spaceship : https://www.iconfinder.com/icons/1012842/alien_galaxy_invasion_launch_rocket_spaceship_universe_icon 
-Virus : https://www.iconfinder.com/icons/5958363/corona_virus_covid-19_disease_epidemic_infection_transmission_virus_icon 
 

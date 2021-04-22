@@ -1,5 +1,6 @@
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
+import json from '@rollup/plugin-json';
 import replace from '@rollup/plugin-replace';
 import { uglify } from 'rollup-plugin-uglify';
 import typescript from 'rollup-plugin-typescript2';
@@ -25,14 +26,20 @@ export default {
 
     plugins: [
 
+        json(),
+
         //  Toggle the booleans here to enable / disable Phaser 3 features:
         replace({
+            preventAssignment: true,
             'typeof CANVAS_RENDERER': JSON.stringify(true),
             'typeof WEBGL_RENDERER': JSON.stringify(true),
             'typeof EXPERIMENTAL': JSON.stringify(true),
             'typeof PLUGIN_CAMERA3D': JSON.stringify(false),
             'typeof PLUGIN_FBINSTANT': JSON.stringify(false),
-            'typeof FEATURE_SOUND': JSON.stringify(true)
+            'typeof FEATURE_SOUND': JSON.stringify(true),
+            process: JSON.stringify({
+                env: process.env
+            })
         }),
 
         //  Parse our .ts source files

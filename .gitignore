@@ -15,3 +15,7 @@ node_modules/
 dist/game.js
 
 dist/game.js.map
+
+env-config.json
+
+build.tar.gz

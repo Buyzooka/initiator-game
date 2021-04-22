@@ -2,7 +2,6 @@
 
 import { env } from "../environment/env";
 
-
 export default class ApiService {
     apiUrl: string;
 

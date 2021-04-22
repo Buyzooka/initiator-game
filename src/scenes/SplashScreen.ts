@@ -18,6 +18,12 @@ export default class SplashScreen extends Phaser.Scene {
         this.logo = this.add.image(screenCenterX, screenCenterY, 'logo')
             .setOrigin(0.5);
 
+        this.add.text(screenCenterX, screenCenterY + 100, `The fast checkout app, that protects your data.`, {
+            fontSize: (13 * window.devicePixelRatio) + 'px',
+            color: '#0d0d21',
+            fontFamily: 'Arial'
+        }).setOrigin(.5);
+
         this.time.addEvent({ delay: 5000, callback: this.startMainScene, callbackScope: this });
     }
     

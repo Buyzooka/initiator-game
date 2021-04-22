@@ -180,8 +180,7 @@ export default class Main extends Phaser.Scene {
      */
     createSpam(): void {
         const spam = this.spamObjectsGroup.create(this.getRandomX(), 0);
-        spam.setCircle(25);
-        spam.setScale(this.scaleRatio, this.scaleRatio);
+        spam.setCircle(spam.width / 2);
         spam.body.bounce.set(1);
     }
 

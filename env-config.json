@@ -1,8 +1,0 @@
-{
-    "environment": "development",
-    "api": {
-      "protocol": "https",
-      "hostname": "apiv1-staging.buyzooka.io",
-      "port": 3333
-    }
-  }

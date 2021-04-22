@@ -1,4 +1,5 @@
 import 'phaser';
+import { env } from './environment/env';
 import SplashScreen from './scenes/SplashScreen';
 
 const config = {
@@ -11,7 +12,7 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            debug: env.environment === 'development',
             gravity: { y: 150 }
         }
     },

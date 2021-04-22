@@ -12,7 +12,7 @@ export default class AvoidSpamInstruction extends Phaser.Scene {
     } 
 
     preload() {
-        this.load.svg('spam', 'assets/sprites/spam.svg');
+        this.load.image('spam', 'assets/sprites/spam.png');
         this.load.html('nickname_form', 'assets/html/nickname.html');
         this.game.scene.add('main', new Main());
     }
@@ -43,8 +43,7 @@ export default class AvoidSpamInstruction extends Phaser.Scene {
             fontSize: (15 * window.devicePixelRatio) + 'px'
         });
 
-        this.spam = this.add.image(screenCenterX, screenCenterY - 150, 'spam')
-            .setScale(window.devicePixelRatio, window.devicePixelRatio);
+        this.spam = this.add.image(screenCenterX, screenCenterY - 150, 'spam');
             
         this.addNicknameForm(screenCenterX, screenCenterY + 350);
     }
