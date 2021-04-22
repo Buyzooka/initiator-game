@@ -2,10 +2,10 @@ enum StringEnum {
     AVOID_SPAM_INSTRUCTION_TITLE = 'Avoid the spams!',
     AVOID_SPAM_INSTRUCTION = `
 Dear player, you're now alone in 
-the void. You must survive by 
-avoiding contact with the spams! 
-We are sending you something that 
-might help you, in a few seconds.
+the void. You must shop avoiding
+contacts with the spams! 
+Catch Buyzooka's shield in a 
+few seconds, it might help you.
 
 Good luck!`,
     AVOID_SPAM_INSTRUCTION_BUTTON = '[UNDERSTOOD!]',
@@ -16,17 +16,17 @@ Amazin is killing all independant
 e-shops by eating their products. 
 Hit him with Buyzooka's shield to 
 destroy him. You must protect 
-e-commerce diversity, this is your 
-mission.
+independant brand diversity.
+You're on mission!
 
-Go go go!`,
+Go shopping, go, go, go!`,
     KILL_AMAZIN_BUTTON = '[Oh.. Okay!]',
     PROTECTED_AGAINST_SPAM_TITLE = `YOU'RE NOW PROTECTED.`,
     PROTECTED_AGAINST_SPAM_INSTRUCTION = `
 Nice catch! Buyzooka's shield 
 is now protecting your ship against 
-SPAMS. Now, don't let those items 
-fall down!
+SPAMS. Now, don't miss any shopping
+items!
 
 Have fun!`,
     PROTECTED_AGAINST_SPAM_BUTTON = '[ROGER THAT!]',

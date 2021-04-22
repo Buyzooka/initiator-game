@@ -62,7 +62,7 @@ export default class Ranking extends Phaser.Scene {
     }
 
     private addReferralBlock(screenCenterX: number, screenCenterY: number): void {
-        const referral_link = `${this.shareUrl}?ref=${this.lead.referral_code}`;
+        const referral_link = `https://play.buyzooka.io?ref=${this.lead.referral_code}`;
         const element = this.add.dom(screenCenterX, screenCenterY + 120)
             .createFromCache('referral-block')
             .setScale(window.devicePixelRatio, window.devicePixelRatio);

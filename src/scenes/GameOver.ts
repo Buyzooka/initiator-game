@@ -53,6 +53,13 @@ export default class GameOver extends Phaser.Scene {
             fontSize: (18 * window.devicePixelRatio) + 'px'
         }).setOrigin(0.5);
 
+        this.add.text(screenCenterX, 350, `
+We will let you know once 
+real app is live! 
+It's very soon ;-)`, {
+            fontSize: (18 * window.devicePixelRatio) + 'px'
+        }).setOrigin(0.5);
+
         this.addSubscribeForm(screenCenterX, screenCenterY);
     }
 
